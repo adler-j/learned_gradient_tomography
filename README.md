@@ -16,13 +16,13 @@ The code contains the following
 
 Contact
 -------
-[Jonas Adler](https://www.kth.se/profile/jonasadl), PhD student
-KTH, Royal Institute of Technology
-Elekta Instrument AB
+[Jonas Adler](https://www.kth.se/profile/jonasadl), PhD student  
+KTH, Royal Institute of Technology  
+Elekta Instrument AB  
 jonasadl@kth.se
 
-[Ozan Öktem](https://www.kth.se/profile/ozan), Associate Professor
-KTH, Royal Institute of Technology
+[Ozan Öktem](https://www.kth.se/profile/ozan), Associate Professor  
+KTH, Royal Institute of Technology  
 ozan@kth.se
 
 Funding
