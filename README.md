@@ -1,9 +1,8 @@
 Solving ill-posed inverse problems using iterative deep neural networks
 =======================================================================
 
-This repository will contain the code for the article "Solving ill-posed inverse problems using iterative deep neural networks" published on arXiv (ADD LINK).
-
-The code is currently being finalized for publication. If you are interested in the non-finalized code, please send an email to the authors.
+This repository will contain the code for the article "Solving ill-posed inverse problems using
+iterative deep neural networks" published on arXiv (ADD LINK).
 
 Contents
 --------
