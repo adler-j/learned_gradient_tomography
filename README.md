@@ -13,6 +13,10 @@ The code contains the following
 * Training using anthropomorphic data. (Data not included for legal/privacy reasons)
 * Evaluation on example head slice
 
+Dependencies
+------------
+The code is currently based on an experimental version of [ODL](https://github.com/odlgroup/odl/pull/972), so that specific branch needs to be used for the code to work.
+
 Contact
 -------
 [Jonas Adler](https://www.kth.se/profile/jonasadl), PhD student  
