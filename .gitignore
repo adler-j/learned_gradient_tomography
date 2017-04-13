@@ -1,0 +1,93 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+doc/_build/
+doc/source/generated
+doc/source/odl_interface
+doc/source/odl*.rst
+
+# PyBuilder
+target/
+
+# Backups from futurize/pasteurize
+*.py.bak
+
+# Visual studio
+*.sdf
+*.sln
+*.suo
+*.pyproj
+*.pyproj.user
+*.pyperf
+*.psess
+
+# vim viles
+*.swp
+*.swo
+*~
+
+# Spyder project files
+.spyproject/
+.spyderproject
+.spyderworkspace
+.spyproject/
+
+# PyCharm project files
+.idea
+
+# IPython / Jupyter notebook files
+*.ipynb
+.ipynb_checkpoints
+
+# Documentation build files
