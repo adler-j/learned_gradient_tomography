@@ -12,6 +12,7 @@ The code contains the following
 * Evaluation on ellipse phantoms
 * Training using anthropomorphic data. (Data not included for legal/privacy reasons)
 * Evaluation on example head slice
+* Reference reconstructions of the above using [ODL](https://github.com/odlgroup/odl).
 
 Dependencies
 ------------
