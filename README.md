@@ -2,7 +2,7 @@ Solving ill-posed inverse problems using iterative deep neural networks
 =======================================================================
 
 This repository will contain the code for the article "Solving ill-posed inverse problems using
-iterative deep neural networks" published on arXiv (ADD LINK).
+iterative deep neural networks" [published on arXiv](https://arxiv.org/abs/1704.04058).
 
 Contents
 --------
