@@ -7,6 +7,7 @@ public, but we are working on providing an open dataset for validation.
 import tensorflow as tf
 import numpy as np
 import odl
+import odl.contrib.tensorflow
 from util import random_phantom, conv2d
 import os
 

@@ -3,6 +3,7 @@
 import tensorflow as tf
 import numpy as np
 import odl
+import odl.contrib.tensorflow
 from util import random_phantom, conv2d
 
 sess = tf.InteractiveSession()
@@ -12,7 +13,7 @@ size = 128
 space = odl.uniform_discr([-64, -64], [64, 64], [size, size],
                           dtype='float32')
 
-geometry = odl.tomo.parallel_beam_geometry(space, angles=30)
+geometry = odl.tomo.parallel_beam_geometry(space, num_angles=30)
 operator = odl.tomo.RayTransform(space, geometry)
 pseudoinverse = odl.tomo.fbp_op(operator)
 

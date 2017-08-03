@@ -10,7 +10,7 @@ space = odl.uniform_discr([-64, -64], [64, 64], [size, size],
                           dtype='float32')
 
 # Creat parallel beam geometry
-geometry = odl.tomo.parallel_beam_geometry(space, angles=30)
+geometry = odl.tomo.parallel_beam_geometry(space, num_angles=30)
 
 # Create ray transform operator
 operator = odl.tomo.RayTransform(space, geometry)
