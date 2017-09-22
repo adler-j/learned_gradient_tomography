@@ -2,6 +2,7 @@
 
 import numpy as np
 import odl
+from odl.contrib.fom import psnr
 
 
 # Create ODL data structures
@@ -66,18 +67,18 @@ sigma = 1.0 / (op_norm ** 2 * tau)  # Step size for the dual variable
 gamma = 0.1
 
 # Optionally pass callback to the solver to display intermediate results
-callback = (odl.solvers.CallbackPrint(lambda x: odl.util.psnr(phantom, x)) &
+callback = (odl.solvers.CallbackPrint(lambda x: psnr(phantom, x)) &
             odl.solvers.CallbackShow(clim=[0.1, 0.4]))
 
 # Choose a starting point
 x = pseudoinverse(data)
 
 # Run the algorithm
-odl.solvers.chambolle_pock_solver(
+odl.solvers.pdhg(
     x, f, g, op, tau=tau, sigma=sigma, niter=niter, gamma=gamma,
     callback=callback)
 
-print('psnr = {}'.format(odl.util.psnr(phantom, x)))
+print('psnr = {}'.format(psnr(phantom, x)))
 
 # Display images
 x.show('Shepp-Logan TV windowed', clim=[0.1, 0.4])

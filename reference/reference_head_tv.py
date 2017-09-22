@@ -87,7 +87,7 @@ gamma = 0.01
 callback = (odl.solvers.CallbackPrint(lambda x: odl.util.psnr(phantom, x)) &
             odl.solvers.CallbackShow(clim=[0.8, 1.2]))
 
-odl.solvers.chambolle_pock_solver(
+odl.solvers.pdhg(
     x, f, g, op, tau=tau, sigma=sigma, niter=niter, gamma=gamma,
     callback=callback)
 
