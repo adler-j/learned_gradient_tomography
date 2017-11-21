@@ -16,7 +16,7 @@ sess = tf.InteractiveSession()
 # Create ODL data structures
 size = 512
 space = odl.uniform_discr([-128, -128], [128, 128], [size, size],
-                          dtype='float32', weighting='const')
+                          dtype='float32')
 
 # Tomography
 # Make a fan beam geometry with flat detector
@@ -210,7 +210,8 @@ if 0:
 
         print('iter={}, validation loss={}'.format(i, loss_result))
 
-        callback((space ** (n_iter + 1)).element(x_values_result))
+        callback((space ** (n_iter + 1)).element(
+            [xv.squeeze() for xv in x_values_result]))
 else:
     # Validate on shepp-logan
     x_values_result, loss_result = sess.run([x_values, loss],
@@ -220,4 +221,5 @@ else:
 
     print('validation loss={}'.format(loss_result))
 
-    callback((space ** (n_iter + 1)).element(x_values_result))
+    callback((space ** (n_iter + 1)).element(
+        [xv.squeeze() for xv in x_values_result]))

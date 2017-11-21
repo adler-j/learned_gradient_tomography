@@ -168,7 +168,8 @@ if 0:
 
         print('iter={}, validation loss={}'.format(i, loss_result))
 
-        callback((space ** (n_iter + 1)).element(x_values_result))
+        callback((space ** (n_iter + 1)).element(
+            [xv.squeeze() for xv in x_values_result]))
 else:
     # Validate on shepp-logan
     x_values_result, loss_result = sess.run([x_values, loss],
@@ -178,4 +179,5 @@ else:
 
     print('validation loss={}'.format(loss_result))
 
-    callback((space ** (n_iter + 1)).element(x_values_result))
+    callback((space ** (n_iter + 1)).element(
+        [xv.squeeze() for xv in x_values_result]))
