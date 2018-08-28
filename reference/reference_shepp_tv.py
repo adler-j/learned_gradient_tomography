@@ -2,7 +2,7 @@
 
 import numpy as np
 import odl
-from odl.contrib.fom import psnr
+from odl.contrib import fom
 
 
 # Create ODL data structures
@@ -41,7 +41,7 @@ gradient = odl.Gradient(space)
 op = odl.BroadcastOperator(operator, gradient)
 
 # Do not use the g functional, set it to zero.
-g = odl.solvers.ZeroFunctional(op.domain)
+f = odl.solvers.ZeroFunctional(op.domain)
 
 # Create functionals for the dual variable
 
@@ -52,22 +52,13 @@ l2_norm = odl.solvers.L2NormSquared(operator.range).translated(data)
 l1_norm = 0.3 * odl.solvers.L1Norm(gradient.range)
 
 # Combine functionals, order must correspond to the operator K
-f = odl.solvers.SeparableSum(l2_norm, l1_norm)
+g = odl.solvers.SeparableSum(l2_norm, l1_norm)
 
 
 # --- Select solver parameters and solve using Chambolle-Pock --- #
 
-
-# Estimated operator norm, add 10 percent to ensure ||K||_2^2 * sigma * tau < 1
-op_norm = 1.1 * odl.power_method_opnorm(op)
-
-niter = 1000  # Number of iterations
-tau = 0.1  # Step size for the primal variable
-sigma = 1.0 / (op_norm ** 2 * tau)  # Step size for the dual variable
-gamma = 0.1
-
 # Optionally pass callback to the solver to display intermediate results
-callback = (odl.solvers.CallbackPrint(lambda x: psnr(phantom, x)) &
+callback = (odl.solvers.CallbackPrint(lambda x: fom.psnr(x, phantom)) &
             odl.solvers.CallbackShow(clim=[0.1, 0.4]))
 
 # Choose a starting point
@@ -75,10 +66,10 @@ x = pseudoinverse(data)
 
 # Run the algorithm
 odl.solvers.pdhg(
-    x, f, g, op, tau=tau, sigma=sigma, niter=niter, gamma=gamma,
-    callback=callback)
+    x, f, g, op, niter=1000, gamma=0.3,
+    callback=None)
 
-print('psnr = {}'.format(psnr(phantom, x)))
+print('psnr = {}'.format(fom.psnr(x, phantom)))
 
 # Display images
 x.show('Shepp-Logan TV windowed', clim=[0.1, 0.4])

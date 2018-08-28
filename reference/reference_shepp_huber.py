@@ -2,6 +2,7 @@
 
 import numpy as np
 import odl
+from odl.contrib import fom
 
 
 # Create ODL data structures
@@ -61,7 +62,7 @@ num_store = 10  # only save some vectors (Limited memory)
 
 
 # Optionally pass callback to the solver to display intermediate results
-callback = (odl.solvers.CallbackPrint(lambda x: odl.util.psnr(phantom, x)) &
+callback = (odl.solvers.CallbackPrint(lambda x: fom.psnr(phantom, x)) &
             odl.solvers.CallbackShow(clim=[0.1, 0.4]))
 
 # Choose a starting point
@@ -73,7 +74,7 @@ odl.solvers.bfgs_method(
     hessinv_estimate=hessinv_estimate,
     callback=callback)
 
-print('psnr = {}'.format(odl.util.psnr(phantom, x)))
+print('psnr = {}'.format(fom.psnr(phantom, x)))
 
 # Display images
 x.show('Shepp-Logan TV windowed', clim=[0.1, 0.4])

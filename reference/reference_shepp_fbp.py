@@ -2,6 +2,7 @@
 
 import numpy as np
 import odl
+from odl.contrib import fom
 
 
 # Create ODL data structures
@@ -31,7 +32,7 @@ data += odl.phantom.white_noise(operator.range) * np.mean(np.abs(data)) * 0.05
 
 recon = pseudoinverse(data)
 
-print('psnr = {}'.format(odl.util.psnr(phantom, recon)))
+print('psnr = {}'.format(fom.psnr(phantom, recon)))
 
 # Display images
 data.show('Data')

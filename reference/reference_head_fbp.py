@@ -2,6 +2,7 @@
 
 import numpy as np
 import odl
+from odl.contrib import fom
 
 mu_water = 0.02
 photons_per_pixel = 10000.0
@@ -48,7 +49,7 @@ data = odl.phantom.poisson_noise(data * photons_per_pixel) / photons_per_pixel
 # Reconstruct using FBP
 recon = pseudoinverse(-np.log(epsilon + data) / mu_water)
 
-print('psnr = {}'.format(odl.util.psnr(phantom, recon)))
+print('psnr = {}'.format(fom.psnr(phantom, recon)))
 
 # Display results
 phantom.show('phantom', clim=[0.8, 1.2])

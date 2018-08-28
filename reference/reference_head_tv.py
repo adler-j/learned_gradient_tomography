@@ -2,6 +2,7 @@
 
 import numpy as np
 import odl
+from odl.contrib import fom
 
 mu_water = 0.02
 photons_per_pixel = 10000.0
@@ -11,7 +12,7 @@ use_artificial_data = True
 # Create ODL data structures
 size = 512
 space = odl.uniform_discr([-128, -128], [128, 128], [size, size],
-                          dtype='float32', weighting='const')
+                          dtype='float32', weighting=1.0)
 
 # Make a fan beam geometry with flat detector
 # Angles: uniformly spaced, n = 1000, min = 0, max = 2 * pi
@@ -56,7 +57,7 @@ gradient = odl.Gradient(space)
 op = odl.BroadcastOperator(nonlinear_operator, gradient)
 
 # Do not use the g functional, set it to zero.
-g = odl.solvers.ZeroFunctional(op.domain)
+f = odl.solvers.ZeroFunctional(op.domain)
 
 # Create functionals for the dual variable
 
@@ -67,7 +68,7 @@ data_discr = odl.solvers.KullbackLeibler(operator.range, noisy_data)
 l1_norm = 0.0002 * odl.solvers.L1Norm(gradient.range)
 
 # Combine functionals, order must correspond to the operator K
-f = odl.solvers.SeparableSum(data_discr, l1_norm)
+g = odl.solvers.SeparableSum(data_discr, l1_norm)
 
 
 # --- Select solver parameters and solve using Chambolle-Pock --- #
@@ -84,14 +85,14 @@ sigma = 1.0 / op_norm  # Step size for the dual variable
 gamma = 0.01
 
 # Pass callback to the solver to display intermediate results
-callback = (odl.solvers.CallbackPrint(lambda x: odl.util.psnr(phantom, x)) &
+callback = (odl.solvers.CallbackPrint(lambda x: fom.psnr(x, phantom)) &
             odl.solvers.CallbackShow(clim=[0.8, 1.2]))
 
 odl.solvers.pdhg(
     x, f, g, op, tau=tau, sigma=sigma, niter=niter, gamma=gamma,
     callback=callback)
 
-print('psnr = {}'.format(odl.util.psnr(phantom, x)))
+print('psnr = {}'.format(fom.psnr(phantom, x)))
 
 # Display images
 x.show('head TV', clim=[0.8, 1.2])
