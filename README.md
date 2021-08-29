@@ -8,9 +8,10 @@ Contents
 --------
 The code contains the following
 
-* Training using ellipse phantoms
-* Evaluation on ellipse phantoms
+* Training using ellipse phantoms(训练，按某种分布随机生成椭圆)
+* Evaluation on ellipse phantoms(评估泛化能力，使用Shepp-Logan phantom)
 * Training using anthropomorphic data. (Data not included for legal/privacy reasons)
+* (head切面数据采用实际临床数据，CT的参数和噪声为人为构造的。)
 * Evaluation on example head slice
 * Reference reconstructions of the above using [ODL](https://github.com/odlgroup/odl).
 
@@ -34,3 +35,7 @@ Funding
 Development is financially supported by the Swedish Foundation for Strategic Research as part of the project "Low complexity image reconstruction in medical imaging" and "3D reconstruction with simulated forward models".
 
 Development has also been financed by [Elekta](https://www.elekta.com/).
+
+Haibo Li
+--------
+Solving ill-posed problems based on ODL(2021.8.27)
